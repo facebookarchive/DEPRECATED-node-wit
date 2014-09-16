@@ -44,14 +44,16 @@ var ACCESS_TOKEN = "YOUR TOKEN HERE";
 console.log("Sending text & audio to Wit.AI");
 
 wit.captureTextIntent(ACCESS_TOKEN, "Hello world", function (err, res) {
-    console.log("Error: ", err);
-    console.log("Response from Wit", JSON.stringify(res, null, " "));
+    console.log("Response from with for text: ");
+    if (err) console.log("Error: ", err);
+    console.log(JSON.stringify(res, null, " "));
 });
 
 var stream = fs.createReadStream('sample.wav');
 wit.captureSpeechIntent(ACCESS_TOKEN, stream, "audio/wav", function (err, res) {
-    console.log("Error: ", err);
-    console.log("Response from Wit", JSON.stringify(res, null, " "));
+    console.log("Response from with for audio stream: ");
+    if (err) console.log("Error: ", err);
+    console.log(JSON.stringify(res, null, " "));
 });
 ```
 
@@ -60,9 +62,9 @@ wit.captureSpeechIntent(ACCESS_TOKEN, stream, "audio/wav", function (err, res) {
 ```bash
 $ node index.js
 Sending text & audio to Wit.AI
-Error:  null
-Response from Wit {
- "msg_id": "2a029fb0-a962-42f1-b914-6f70a0a055be",
+Response from with for text:
+{
+ "msg_id": "7a5f7a1b-6ae7-4e34-a59d-5347df95c411",
  "_text": "Hello world",
  "outcomes": [
   {
@@ -73,9 +75,9 @@ Response from Wit {
   }
  ]
 }
-Error:  null
-Response from Wit {
- "msg_id": "a067f9f8-ef7d-4adf-8ffa-4a5080544fdd",
+Response from with for audio stream:
+{
+ "msg_id": "13b7cf3f-8f16-422d-adb9-b8133b9e99dd",
  "_text": "what's the weather in New York",
  "outcomes": [
   {
@@ -113,8 +115,9 @@ input. The function takes 3 parameters:
 ```javascript
 var wit = require('node-wit');
 wit.captureTextIntent(ACCESS_TOKEN, "Hello world", function (err, res) {
-    console.log("Error: ", err);
-    console.log("Response from Wit", JSON.stringify(res, null, " "));
+    console.log("Response from with for text: ");
+    if (err) console.log("Error: ", err);
+    console.log(JSON.stringify(res, null, " "));
 });
 ```
 
@@ -132,9 +135,11 @@ input. The function takes 4 arguments:
     
 ```javascript
 var wit = require('node-wit');
+var fs = require('fs');
 var stream = fs.createReadStream('sample.wav');
 wit.captureSpeechIntent(ACCESS_TOKEN, stream, "audio/wav", function (err, res) {
-    console.log("Error: ", err);
-    console.log("Response from Wit", JSON.stringify(res, null, " "));
+    console.log("Response from with for audio stream: ");
+    if (err) console.log("Error: ", err);
+    console.log(JSON.stringify(res, null, " "));
 });
 ```
