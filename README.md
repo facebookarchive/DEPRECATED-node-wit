@@ -106,7 +106,7 @@ The `captureTextIntent` function returns the meaning extracted from the text
 input. The function takes 3 parameters:
 - `access_token`: Your access token for your instance
 - `text`: The text input you want to extract the meaning of
-- `callback(error, response)`: A callback function get 3 arguments:
+- `callback(error, response)`: A callback function get 2 arguments:
     1. An `error` when applicable
     2. A JSON object containing the Wit.AI response
     
@@ -126,7 +126,7 @@ input. The function takes 4 arguments:
 - `stream`: The audio stream you want to extract the meaning of
 - `content-type`: The content-type of your audio stream (`audio/wav`, `audio/mpeg3`, 
 `audio/raw;encoding=unsigned-integer;bits=16;rate=8000;endian=big`, ...)
-- `callback(error, response)`: A callback function get 3 arguments:
+- `callback(error, response)`: A callback function get 2 arguments:
     1. An `error` when applicable
     2. A JSON object containing the Wit.AI response
     
