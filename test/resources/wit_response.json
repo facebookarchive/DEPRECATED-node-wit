@@ -1,0 +1,20 @@
+{
+    "msg_id" : "595b9d2b-2465-47e0-b18a-8e6827dbdb88",
+    "_text" : "set alarm tomorrow at 5pm",
+    "outcomes" : [ {
+        "_text" : "set alarm tomorrow at 5pm",
+        "intent" : "alarm_set",
+        "entities" : {
+            "datetime" : [ {
+                "value" : {
+                    "from" : "2014-09-17T17:00:00.000-07:00",
+                    "to" : "2014-09-17T18:00:00.000-07:00"
+                }
+            } ],
+            "on_off" : [ {
+                "value" : "on"
+            } ]
+        },
+        "confidence" : 0.998
+    } ]
+}

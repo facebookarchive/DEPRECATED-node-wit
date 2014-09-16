@@ -1,0 +1,25 @@
+{
+    "name": "node-wit",
+    "version": "0.0.1",
+    "private": false,
+    "homepage": "https://github.com/wit-ai/node-wit",
+    "description":"Node module to request Wit.AI",
+    "repository": "https://github.com/wit-ai/node-wit",
+    "author": {
+        "name": "Olivier Vaussy",
+        "email": "oliv@wit.ai"
+    },
+    "scripts": {
+        "test": "node_modules/mocha/bin/_mocha test/*_test.js --ignore-leaks -t 20000 --reporter spec"
+    },
+    "dependencies": {
+        "request": "2.42.0",
+        "underscore": "1.7.0"
+    },
+    "devDependencies": {
+        "mocha": "1.21.4",
+        "nock": "0.47.0",
+        "chai": "1.9.1"
+    },
+    "main": "./index.js"
+}
