@@ -1,4 +1,4 @@
-# Wit.AI wrapper for Node.JS
+# Wit.ai wrapper for Node.JS
 
 ## Quick start
 
@@ -25,9 +25,10 @@ Add node-wit as a dependencies in your package.json
   },	
 ```
 
-We will send some audio file to Wit.AI
+We will send an audio file to Wit.AI
 
-You can use [SoX](http://sox.sourceforge.net) to record WAV files from the command line. 
+You can use [SoX](http://sox.sourceforge.net) to record WAV files from the command line.
+`brew install sox` on OSX and `apt-get install sox` on ubuntu.
 The following options will create a Wit-ready WAV file (press Ctrl+C to stop recording):
 
 ```bash
@@ -39,19 +40,19 @@ Create a `index.js` file in myapp directory containing:
 ```javascript
 var wit = require('node-wit');
 var fs = require('fs');
-var ACCESS_TOKEN = "YOUR TOKEN HERE";
+var ACCESS_TOKEN = "IQ77NWUPUMNBYEUEKRTWU3VDR5YSLHTA";
 
 console.log("Sending text & audio to Wit.AI");
 
 wit.captureTextIntent(ACCESS_TOKEN, "Hello world", function (err, res) {
-    console.log("Response from with for text: ");
+    console.log("Response from Wit for text input: ");
     if (err) console.log("Error: ", err);
     console.log(JSON.stringify(res, null, " "));
 });
 
 var stream = fs.createReadStream('sample.wav');
 wit.captureSpeechIntent(ACCESS_TOKEN, stream, "audio/wav", function (err, res) {
-    console.log("Response from with for audio stream: ");
+    console.log("Response from Wit for audio stream: ");
     if (err) console.log("Error: ", err);
     console.log(JSON.stringify(res, null, " "));
 });
@@ -62,9 +63,9 @@ wit.captureSpeechIntent(ACCESS_TOKEN, stream, "audio/wav", function (err, res) {
 ```bash
 $ node index.js
 Sending text & audio to Wit.AI
-Response from with for text:
+Response from Wit for text input:
 {
- "msg_id": "7a5f7a1b-6ae7-4e34-a59d-5347df95c411",
+ "msg_id": "b46d4a08-1e2e-43f4-b30a-aaa7bccb88e3",
  "_text": "Hello world",
  "outcomes": [
   {
@@ -75,9 +76,9 @@ Response from with for text:
   }
  ]
 }
-Response from with for audio stream:
+Response from Wit for audio stream:
 {
- "msg_id": "13b7cf3f-8f16-422d-adb9-b8133b9e99dd",
+ "msg_id": "83c14e47-13cb-4ad4-9f5e-723cd47016be",
  "_text": "what's the weather in New York",
  "outcomes": [
   {
@@ -115,7 +116,7 @@ input. The function takes 3 parameters:
 ```javascript
 var wit = require('node-wit');
 wit.captureTextIntent(ACCESS_TOKEN, "Hello world", function (err, res) {
-    console.log("Response from with for text: ");
+    console.log("Response from Wit for text input: ");
     if (err) console.log("Error: ", err);
     console.log(JSON.stringify(res, null, " "));
 });
@@ -138,7 +139,7 @@ var wit = require('node-wit');
 var fs = require('fs');
 var stream = fs.createReadStream('sample.wav');
 wit.captureSpeechIntent(ACCESS_TOKEN, stream, "audio/wav", function (err, res) {
-    console.log("Response from with for audio stream: ");
+    console.log("Response from Wit for audio stream: ");
     if (err) console.log("Error: ", err);
     console.log(JSON.stringify(res, null, " "));
 });
