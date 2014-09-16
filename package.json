@@ -1,10 +1,24 @@
 {
     "name": "node-wit",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "private": false,
     "homepage": "https://github.com/wit-ai/node-wit",
     "description":"Node module to request Wit.AI",
     "repository": "https://github.com/wit-ai/node-wit",
+    "bugs": {
+        "url": "https://github.com/wit-ai/node-wit/issues"
+    },
+    "keywords": [
+        "wit",
+        "automation",
+        "home",
+        "siri",
+        "wit.ai",
+        "nlp",
+        "speech",
+        "intent",
+        "jarvis"
+    ],
     "author": {
         "name": "Olivier Vaussy",
         "email": "oliv@wit.ai"
