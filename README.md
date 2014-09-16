@@ -23,6 +23,8 @@
       },	
     ```
     
+    Execute `npm install` in your current folder to fetch the dependencies
+    
     We will send an audio file to Wit.AI
     
     You can use [SoX](http://sox.sourceforge.net) to record WAV files from the command line.
