@@ -1,6 +1,6 @@
 ## Quick start
 
-1. You need to create an instance //TODO Add link to getting started
+1. You need to create an [Wit instance first](https://wit.ai/docs/console/quickstart).
 
 2. Install [Node.JS](http://nodejs.org/) on your computer.
 
@@ -19,7 +19,7 @@
     
     ```json
       "dependencies": {
-        "node-wit": "1.0.0"	
+        "node-wit": "1.1.0"	
       },	
     ```
     
