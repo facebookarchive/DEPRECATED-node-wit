@@ -28,7 +28,7 @@ describe('Wit', function () {
             var scope = nock('https://api.wit.ai/', {
                 reqheaders: {
                     'Authorization': 'Bearer 1234',
-                    'Accept': 'application/vnd.wit.20140916'
+                    'Accept': 'application/vnd.wit.20141119'
                 }
             }).get('/message?q=set%20alarm%20tomorrow%20at%205pm')
                 .reply(200, wit_response);
@@ -58,7 +58,7 @@ describe('Wit', function () {
             var scope = nock('https://api.wit.ai/', {
                 reqheaders: {
                     'Authorization': 'Bearer 1234',
-                    'Accept': 'application/vnd.wit.20140916',
+                    'Accept': 'application/vnd.wit.20141119',
                     'Content-Type': "audio/wav"
                 }
             }).post('/speech')
