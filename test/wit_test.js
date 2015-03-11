@@ -28,8 +28,9 @@ describe('Wit', function () {
             var scope = nock('https://api.wit.ai/', {
                 reqheaders: {
                     'Authorization': 'Bearer 1234',
+                    'Accept': 'application/vnd.wit.20150306'
                 }
-            }).get('/message?q=set%20alarm%20tomorrow%20at%205pm&v=201536')
+            }).get('/message?q=set%20alarm%20tomorrow%20at%205pm')
                 .reply(200, wit_response);
             wit.captureTextIntent("1234", "set alarm tomorrow at 5pm", function (err, res) {
                 assert.isNull(err, "error should be undefined");
@@ -40,7 +41,7 @@ describe('Wit', function () {
         });
         it('return an error', function (done) {
             var scope = nock('https://api.wit.ai/')
-                .get('/message?q=set%20alarm%20tomorrow%20at%205pm&v=201536')
+                .get('/message?q=set%20alarm%20tomorrow%20at%205pm')
                 .reply(400, error_response);
             wit.captureTextIntent("1234", "set alarm tomorrow at 5pm", function (err, res) {
                 assert.equal(err, "Invalid response received from server: 400");
@@ -57,9 +58,10 @@ describe('Wit', function () {
             var scope = nock('https://api.wit.ai/', {
                 reqheaders: {
                     'Authorization': 'Bearer 1234',
+                    'Accept': 'application/vnd.wit.20150306',
                     'Content-Type': "audio/wav"
                 }
-            }).post('/speech?v=201536')
+            }).post('/speech')
                 .reply(200, wit_response);
             wit.captureSpeechIntent("1234", stream, "audio/wav", function (err, res) {
                 assert.isNull(err, "error should be undefined");
@@ -71,7 +73,7 @@ describe('Wit', function () {
         it('return an error', function (done) {
             var stream = fs.createReadStream(path.join(resourceDir, 'sample.wav'));
             var scope = nock('https://api.wit.ai/')
-                .post('/speech?v=201536')
+                .post('/speech')
                 .reply(404, error_response);
             wit.captureSpeechIntent("1234", stream, "audio/wav", function (err, res) {
                 assert.equal(err, "Invalid response received from server: 404");
