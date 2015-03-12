@@ -19,7 +19,7 @@
     
     ```json
       "dependencies": {
-        "node-wit": "1.1.0"	
+        "node-wit": "1.2.0"	
       },	
     ```
     
