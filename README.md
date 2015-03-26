@@ -15,12 +15,10 @@
     ...
     ```
     
-    Add node-wit as a dependencies in your package.json
+    Install and add node-wit as a dependencies in your package.json :
     
-    ```json
-      "dependencies": {
-        "node-wit": "1.2.0"	
-      },	
+    ```bash
+    npm install --save node-wit
     ```
     
     Execute `npm install` in your current folder to fetch the dependencies
