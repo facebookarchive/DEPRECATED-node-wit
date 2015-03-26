@@ -50,6 +50,21 @@ describe('Wit', function () {
                 done();
             });
         });
+        it('should send options as given in parameter', function (done) {
+            var scope = nock('https://api.wit.ai/', {
+                reqheaders: {
+                    'Authorization': 'Bearer 1234',
+                    'Accept': 'application/vnd.wit.20150306'
+                }
+            }).get('/message?q=set%20alarm%20tomorrow%20at%205pm&verbose=true&context%5Btest%5D=1')
+                .reply(200, wit_response);
+            wit.captureTextIntent("1234", "set alarm tomorrow at 5pm", {"verbose": true, "context": {"test" : "1"}}, function (err, res) {
+                assert.isNull(err, "error should be undefined");
+                assert.deepEqual(res, wit_response);
+                scope.done();
+                done();
+            });
+        });
     });
 
     describe('captureSpeechIntent', function () {
@@ -81,6 +96,22 @@ describe('Wit', function () {
                 scope.done();
                 done();
             })
-        })
+        });
+        it('should send options as given in parameter', function (done) {
+            var stream = fs.createReadStream(path.join(resourceDir, 'sample.wav'));
+            var scope = nock('https://api.wit.ai/', {
+                reqheaders: {
+                    'Authorization': 'Bearer 1234',
+                    'Accept': 'application/vnd.wit.20150306'
+                }
+            }).post('/speech?verbose=true&context%5Btest%5D=1')
+              .reply(200, wit_response);
+            wit.captureSpeechIntent("1234", stream, "audio/wav", {"verbose": true, "context": {"test" : "1"}}, function (err, res) {
+                assert.isNull(err, "error should be undefined");
+                assert.deepEqual(res, wit_response);
+                scope.done();
+                done();
+            });
+        });
     });
 });
