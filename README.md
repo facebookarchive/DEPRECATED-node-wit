@@ -125,11 +125,12 @@ wit.captureTextIntent(ACCESS_TOKEN, "Hello world", function (err, res) {
 ### captureSpeechIntent
 
 The `captureSpeechIntent` function returns the meaning extracted from the audio
-input. The function takes 4 arguments:
+input. The function takes 5 arguments:
 - `access_token`: Your access token for your instance
 - `stream`: The audio stream you want to extract the meaning of
 - `content-type`: The content-type of your audio stream (`audio/wav`, `audio/mpeg3`, 
 `audio/raw;encoding=unsigned-integer;bits=16;rate=8000;endian=big`, ...)
+- `context`(optional): json object to be passed to wit for context
 - `callback(error, response)`: A callback function get 2 arguments:
     1. An `error` when applicable
     2. A JSON object containing the Wit.AI response
