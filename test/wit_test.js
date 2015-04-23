@@ -39,6 +39,24 @@ describe('Wit', function () {
                 done();
             });
         });
+        it('return the correct answer with states in context', function (done) {
+            var scope = nock('https://api.wit.ai/', {
+                reqheaders: {
+                    'Authorization': 'Bearer 1234',
+                    'Accept': 'application/vnd.wit.20150306'
+                }
+            }).get('/message?q=set%20alarm%20tomorrow%20at%205pm&context=%7B%22state%22%3A%5B%22myState1%22%2C%22myState2%22%5D%7D')
+                .reply(200, wit_response);
+            var context = JSON.stringify({state: ["myState1", "myState2"]});
+            wit.captureTextIntent("1234", "set alarm tomorrow at 5pm",
+                {context: context},
+                function (err, res) {
+                    assert.isNull(err, "error should be undefined");
+                    assert.deepEqual(res, wit_response);
+                    scope.done();
+                    done();
+                });
+        });
         it('return an error', function (done) {
             var scope = nock('https://api.wit.ai/')
                 .get('/message?q=set%20alarm%20tomorrow%20at%205pm')
@@ -56,13 +74,16 @@ describe('Wit', function () {
                     'Authorization': 'Bearer 1234',
                     'Accept': 'application/vnd.wit.20150306'
                 }
-            }).get('/message?q=set%20alarm%20tomorrow%20at%205pm&verbose=true&context%5Btest%5D=1')
+            }).get('/message?q=set%20alarm%20tomorrow%20at%205pm&verbose=true&context=%7B%22test%22%3A%221%22%7D')
                 .reply(200, wit_response);
-            wit.captureTextIntent("1234", "set alarm tomorrow at 5pm", {"verbose": true, "context": {"test" : "1"}}, function (err, res) {
-                assert.isNull(err, "error should be undefined");
-                assert.deepEqual(res, wit_response);
-                scope.done();
-                done();
+            var options = {verbose: true,
+                           context: JSON.stringify({"test" : "1"})};
+            wit.captureTextIntent("1234", "set alarm tomorrow at 5pm", options,
+                function (err, res) {
+                    assert.isNull(err, "error should be undefined");
+                    assert.deepEqual(res, wit_response);
+                    scope.done();
+                    done();
             });
         });
     });
@@ -104,14 +125,17 @@ describe('Wit', function () {
                     'Authorization': 'Bearer 1234',
                     'Accept': 'application/vnd.wit.20150306'
                 }
-            }).post('/speech?verbose=true&context%5Btest%5D=1')
+            }).post('/speech?verbose=true&context=%7B%22test%22%3A%221%22%7D')
               .reply(200, wit_response);
-            wit.captureSpeechIntent("1234", stream, "audio/wav", {"verbose": true, "context": {"test" : "1"}}, function (err, res) {
-                assert.isNull(err, "error should be undefined");
-                assert.deepEqual(res, wit_response);
-                scope.done();
-                done();
-            });
+            var options = {verbose: true,
+                           context: JSON.stringify({"test" : "1"})};
+            wit.captureSpeechIntent("1234", stream, "audio/wav", options,
+                function (err, res) {
+                    assert.isNull(err, "error should be undefined");
+                    assert.deepEqual(res, wit_response);
+                    scope.done();
+                    done();
+                });
         });
     });
 });
