@@ -37,7 +37,7 @@
     "test": "node_modules/mocha/bin/_mocha test/*_test.js --ignore-leaks -t 20000 --reporter spec"
   },
   "dependencies": {
-    "node-record-lpcm16": "^0.1.1",
+    "node-record-lpcm16": "git+https://github.com/gillesdemey/node-record-lpcm16.git",
     "request": "2.42.0",
     "underscore": "1.7.0"
   },
