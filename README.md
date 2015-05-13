@@ -160,7 +160,7 @@ The function takes 5 arguments:
 var wit = require('node-wit');
 // The `captureSpeechIntent` function returns the `node-record-lpcm16` object
 // See https://github.com/gillesdemey/node-record-lpcm16 for more details
-var recording = wit.captureSpeechIntent(ACCESS_TOKEN, function (err, res) {
+var recording = wit.captureSpeechIntentFromMic(ACCESS_TOKEN, function (err, res) {
     console.log("Response from Wit for microphone audio stream: ");
     if (err) console.log("Error: ", err);
     console.log(JSON.stringify(res, null, " "));
