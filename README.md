@@ -144,3 +144,32 @@ wit.captureSpeechIntent(ACCESS_TOKEN, stream, "audio/wav", function (err, res) {
     console.log(JSON.stringify(res, null, " "));
 });
 ```
+
+### captureSpeechIntentFromMic
+
+
+The `captureSpeechIntentFromMic` function returns the meaning extracted from the audio recorded from your microphone using sox.
+The function takes 5 arguments:
+- `access_token`: Your access token for your instance
+- `options`: [optional] A json object containing any call options such as `verbose` or `context`
+- `callback(error, response)`: A callback function get 2 arguments:
+    1. An `error` when applicable
+    2. A JSON object containing the Wit.AI response
+
+```javascript
+var wit = require('node-wit');
+// The `captureSpeechIntent` function returns the `node-record-lpcm16` object
+// See https://github.com/gillesdemey/node-record-lpcm16 for more details
+var recording = wit.captureSpeechIntentFromMic(ACCESS_TOKEN, function (err, res) {
+    console.log("Response from Wit for microphone audio stream: ");
+    if (err) console.log("Error: ", err);
+    console.log(JSON.stringify(res, null, " "));
+});
+// The microphone audio stream will automatically attempt to stop when it encounters silence.
+// You can stop the recording manually by calling `stop`
+// Ex: Stop recording after five seconds
+setTimeout(function () {
+    recording.stop();
+}, 5000);
+```
+
